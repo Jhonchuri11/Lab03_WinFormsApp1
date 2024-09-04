@@ -9,7 +9,7 @@ namespace WinFormsApp2
     internal class Student
     {
 
-        public Int32 StudentId { get; set; }
+        public int StudentId { get; set; }
         public string FirstName { get; set; }
 
         public string LastName { get; set; }

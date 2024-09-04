@@ -61,6 +61,7 @@ namespace WinFormsApp2
 
                 SqlCommand command = new SqlCommand("Select * from Students", conextion);
 
+                // Listado de objetos
                 List<Student> listStudents = new List<Student>();
 
                 SqlDataReader reader = command.ExecuteReader();
@@ -68,14 +69,19 @@ namespace WinFormsApp2
 
                 while (reader.Read())
                 {
-                    conextion.Close();
+                    // No cerramos antes, luego se cierra despues de leer los datos
+                    //conextion.Close;
 
                     Student student = new Student();
-                    student.StudentId = Convert.ToInt32(reader["studentid"]);
-                    student.FirstName = reader["firstname"].ToString();
-                    student.LastName = reader["Llastname"].ToString();
+
+                    // Tomando en cuenta que nuestro id : identificador en un entero, tenenemos que usar
+                    // la conversion
+                    student.StudentId = Convert.ToInt32(reader["StudentId"]);
+                    student.FirstName = reader["FirstName"].ToString();
+                    student.LastName = reader["LastName"].ToString();
                     listStudents.Add(student);
                 }
+                conextion.Close();
 
                 dataGridView1.DataSource = listStudents;
 
